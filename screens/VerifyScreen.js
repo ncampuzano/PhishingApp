@@ -8,8 +8,16 @@ class VerifyScreen extends React.Component {
     return (
       <View style={styles.container}>
         <ScrollView>
-          <View>
-            <Text>Hello!</Text>
+          <View style={styles.topContainer}>
+            <View style={styles.titleContainer}>
+              <Text>Hi!</Text>
+            </View>
+            <View style={styles.searchContainer}>
+              <Text>Hi!</Text>
+            </View>
+          </View>
+          <View style={styles.infoContainer}>
+            <Text>Hi!</Text>
           </View>
         </ScrollView>
       </View>      
@@ -26,6 +34,19 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
   },
+  topContainer: {
+    flex: 2,
+  },
+  infoContainer: {
+    flex: 3,
+  },
+  titleContainer: {
+    flex: 1,
+    justifyContent: 'center',
+  },
+  searchContainer: {
+    flex: 1,
+  }
 });
 
 export default VerifyScreen;
