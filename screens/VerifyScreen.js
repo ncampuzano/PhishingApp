@@ -2,19 +2,20 @@ import * as React from 'react';
 import { Image, Platform, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 
-
 class VerifyScreen extends React.Component {
+  state = {
+    firstQuery: '',
+  }
   render() {
+    const { firstQuery } = this.state;
     return (
       <View style={styles.container}>
-        <ScrollView>
-          <View style={styles.topContainer}>
-            <View style={styles.titleContainer}>
-              <Text>Hi!</Text>
-            </View>
-            <View style={styles.searchContainer}>
-              <Text>Hi!</Text>
-            </View>
+        <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
+          <View style={styles.titleContainer}>
+            <Text style={{ fontSize: 24 }}>Paste the URL below!</Text>
+          </View>
+          <View style={styles.searchContainer}>
+            
           </View>
           <View style={styles.infoContainer}>
             <Text>Hi!</Text>
@@ -34,18 +35,17 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
   },
-  topContainer: {
-    flex: 2,
+  contentContainer: {
+    paddingTop: 30,
   },
   infoContainer: {
-    flex: 3,
+    marginVertical: 100
   },
   titleContainer: {
-    flex: 1,
-    justifyContent: 'center',
+    alignItems:'center'
   },
   searchContainer: {
-    flex: 1,
+    marginTop: 50
   }
 });
 
