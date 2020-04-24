@@ -1,4 +1,4 @@
-import { Constants } from 'expo';
+import Constants from 'expo-constants';
 const BASE_URL = 'https://checkurl.phishtank.com/checkurl/index.php';
 
 
@@ -7,10 +7,9 @@ async function GetURLInformation(url) {
     const parameters = {
       url,
       format: 'json',
-      app_key: Constants.manifest.extra.PhishTankKey
+      app_key: Constants.manifest.extra.PhishTankKey, 
     }
     let formData = new FormData();
-
     for (let k in parameters) {
       formData.append(k, parameters[k]);
     }
@@ -23,7 +22,7 @@ async function GetURLInformation(url) {
       },
       body: formData
     });
-    console.log(response);
+    response = await response.json();
     return response;
   } catch(error) {
     console.error(error);
