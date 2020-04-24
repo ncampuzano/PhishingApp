@@ -3,7 +3,7 @@ import * as React from 'react';
 
 import TabBarIcon from '../components/TabBarIcon';
 // import HomeScreen from '../screens/HomeScreen';
-import LinksScreen from '../screens/LinksScreen';
+// import LinksScreen from '../screens/LinksScreen';
 import VerifyScreen from '../screens/VerifyScreen';
 import ReportScreen from '../screens/ReportScreen';
 
@@ -21,7 +21,7 @@ export default function BottomTabNavigator({ navigation, route }) {
         component={VerifyScreen}
         options={{
           title: 'Verify',
-          tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-code-working" />,
+          tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-search" />,
         }}
       />
       <BottomTab.Screen
@@ -29,7 +29,7 @@ export default function BottomTabNavigator({ navigation, route }) {
         component={ReportScreen}
         options={{
           title: 'Report',
-          tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-book" />,
+          tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-report" />,
         }}
       />
     </BottomTab.Navigator>
