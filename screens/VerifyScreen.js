@@ -1,11 +1,15 @@
 import * as React from 'react';
 import { Image, Platform, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
+import { SearchBar } from 'react-native-elements';
 
 class VerifyScreen extends React.Component {
   state = {
     firstQuery: '',
-  }
+  };
+  updateSearch = search => {
+    this.setState({ firstQuery: search});
+  };
   render() {
     const { firstQuery } = this.state;
     return (
@@ -15,7 +19,11 @@ class VerifyScreen extends React.Component {
             <Text style={{ fontSize: 24 }}>Paste the URL below!</Text>
           </View>
           <View style={styles.searchContainer}>
-            
+            <SearchBar 
+              placeholder="Paste your URL"
+              onChangeText={this.updateSearch}
+              value={firstQuery}
+            />
           </View>
           <View style={styles.infoContainer}>
             <Text>Hi!</Text>
