@@ -29,7 +29,7 @@ export default function BottomTabNavigator({ navigation, route }) {
         component={ReportScreen}
         options={{
           title: 'Report',
-          tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-report" />,
+          tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-remove" />,
         }}
       />
     </BottomTab.Navigator>
