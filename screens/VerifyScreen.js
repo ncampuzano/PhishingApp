@@ -23,6 +23,8 @@ class VerifyScreen extends React.Component {
               placeholder="Paste your URL"
               onChangeText={this.updateSearch}
               value={firstQuery}
+              lightTheme
+              containerStyle={{ backgroundColor: '#fff', borderStyle: 'dashed' }}
             />
           </View>
           <View style={styles.infoContainer}>
@@ -47,13 +49,13 @@ const styles = StyleSheet.create({
     paddingTop: 30,
   },
   infoContainer: {
-    marginVertical: 100
+    marginVertical: 60
   },
   titleContainer: {
     alignItems:'center'
   },
   searchContainer: {
-    marginTop: 50
+    marginTop: 30
   }
 });
 
