@@ -6,11 +6,13 @@ import { ScrollView } from 'react-native-gesture-handler';
 class VerifyScreen extends React.Component {
   render() {
     return (
-      <ScrollView>
-        <View style={style.container}>
-          <Text>Hello!</Text>
-        </View>
-      </ScrollView>
+      <View style={styles.container}>
+        <ScrollView>
+          <View>
+            <Text>Hello!</Text>
+          </View>
+        </ScrollView>
+      </View>      
     )
   };
 }
