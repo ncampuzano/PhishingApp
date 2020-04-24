@@ -1,17 +1,27 @@
 import * as React from 'react';
-import { Image, Platform, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
-import { SearchBar } from 'react-native-elements';
+import { SearchBar, Button } from 'react-native-elements';
+
+import { GetURLInformation } from '../functions/PhishTankAPI';
 
 class VerifyScreen extends React.Component {
   state = {
-    firstQuery: '',
-  };
-  updateSearch = search => {
-    this.setState({ firstQuery: search});
+    query: '',
+    result: null,
+    isLoading: false,
+  }; 
+  searchURL = async () => {
+    this.setState({ isLoading: true });
+    const response = await GetURLInformation(this.state.query);
+    console.log(response);
+    this.setState({ result: response, isLoading: false });
+  }
+  updateSearch = (search) => {
+    this.setState({ query: search });
   };
   render() {
-    const { firstQuery } = this.state;
+    const { query } = this.state;
     return (
       <View style={styles.container}>
         <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
@@ -20,15 +30,21 @@ class VerifyScreen extends React.Component {
           </View>
           <View style={styles.searchContainer}>
             <SearchBar 
-              placeholder="Paste your URL"
+              placeholder='Paste your URL'
               onChangeText={this.updateSearch}
-              value={firstQuery}
+              value={query}
               lightTheme
               containerStyle={{ backgroundColor: '#fff', borderStyle: 'dashed' }}
             />
+            <Button 
+              title='Search'
+              type='outline'
+              onPress={() => this.searchURL()}
+              loading={this.state.isLoading}
+            />
           </View>
           <View style={styles.infoContainer}>
-            <Text>Hi!</Text>
+            <Text>{JSON.stringify(this.state.result) }</Text>
           </View>
         </ScrollView>
       </View>      
