@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { StyleSheet, View } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
-import { SearchBar, Button, Text, Badge, Tooltip} from 'react-native-elements';
+import { SearchBar, Button, Text, Badge, Tooltip, Icon } from 'react-native-elements';
 import * as WebBrowser from 'expo-web-browser';
 
 import { GetURLInformation } from '../functions/PhishTankAPI';
@@ -44,6 +44,7 @@ class VerifyScreen extends React.Component {
             <Button 
               title='Search'
               type='outline'
+              style={{ marginHorizontal: 10 }}
               onPress={() => this.searchURL()}
               loading={this.state.isLoading}
             />
@@ -60,12 +61,20 @@ class VerifyScreen extends React.Component {
                     <Badge status='success' value=' '/>) ||
                     <Badge status='error' value=' '/>
                   }
+                  <Text style={styles.subtitle}>  In Database  </Text>
                   <Tooltip popover={
-                    <Text>Green means in the database and Red it does not.</Text>
+                    <Text>{(this.state.result.verified && 'In our Database')
+                    || 'No information'}</Text>
                   }>
-                    <Text style={styles.subtitle}>  In Database</Text>
+                    <Icon
+                      reverse
+                      name='help-outline'
+                      type='ionicon'
+                      color='#517fa4'
+                      size={15}
+                    />
                   </Tooltip>
-                  
+
                 </View>
                 { this.state.result.in_database && 
                   <View>
@@ -74,10 +83,19 @@ class VerifyScreen extends React.Component {
                         <Badge status='error' value=' '/>) ||
                         <Badge status='primary' value=' '/>
                       }
+                      
+                      <Text style={styles.subtitle}>  Verified  </Text>
                       <Tooltip popover={
-                        <Text>Red means is phishing and Blue it is not.</Text>
+                        <Text>{(this.state.result.verified && 'Is Phising')
+                          || 'No verified'}</Text>
                       }>
-                        <Text style={styles.subtitle}>  Verified</Text>
+                        <Icon
+                          reverse
+                          name='help-outline'
+                          type='ionicon'
+                          color='#517fa4'
+                          size={15}
+                        />
                       </Tooltip>
                     </View>
                     { this.state.result.verified &&
@@ -88,6 +106,7 @@ class VerifyScreen extends React.Component {
                     }
                     <Button 
                       title='Open in browser'
+                      style={{ marginTop: 25, marginHorizontal: 50 }}
                       onPress={() => this.openBrowser()}
                     />
                   </View>
