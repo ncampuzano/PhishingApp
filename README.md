@@ -17,6 +17,6 @@ Some view samples
 
 ![](docs/8630.PNG)
 
-![](docs/IMG_8631.png)
+![](docs/IMG_8631.PNG)
 
-![](docs/IMG_8632.png)
+![](docs/IMG_8632.PNG)
