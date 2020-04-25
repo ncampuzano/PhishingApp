@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { StyleSheet, View } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
-import { SearchBar, Button, Text, Badge } from 'react-native-elements';
+import { SearchBar, Button, Text, Badge, Tooltip} from 'react-native-elements';
 import * as WebBrowser from 'expo-web-browser';
 
 import { GetURLInformation } from '../functions/PhishTankAPI';
@@ -60,16 +60,25 @@ class VerifyScreen extends React.Component {
                     <Badge status='success' value=' '/>) ||
                     <Badge status='error' value=' '/>
                   }
-                  <Text style={styles.subtitle}>  In Database</Text>
+                  <Tooltip popover={
+                    <Text>Green means in the database and Red it does not.</Text>
+                  }>
+                    <Text style={styles.subtitle}>  In Database</Text>
+                  </Tooltip>
+                  
                 </View>
                 { this.state.result.in_database && 
                   <View>
                     <View style={styles.textContainer}>
                       {(this.state.result.verified && 
-                        <Badge status='success' value=' '/>) ||
-                        <Badge status='error' value=' '/>
+                        <Badge status='error' value=' '/>) ||
+                        <Badge status='primary' value=' '/>
                       }
-                      <Text style={styles.subtitle}>  Verified</Text>
+                      <Tooltip popover={
+                        <Text>Red means is phishing and Blue it is not.</Text>
+                      }>
+                        <Text style={styles.subtitle}>  Verified</Text>
+                      </Tooltip>
                     </View>
                     { this.state.result.verified &&
                       <View style={styles.textContainer}>
@@ -79,7 +88,6 @@ class VerifyScreen extends React.Component {
                     }
                     <Button 
                       title='Open in browser'
-                      type='outline'
                       onPress={() => this.openBrowser()}
                     />
                   </View>
