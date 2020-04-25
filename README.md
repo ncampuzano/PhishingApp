@@ -15,7 +15,7 @@ Remember add the API Key of PhishTank in *app.json*
 
 Some view samples
 
-![](docs/8630.png)
+![](docs/8630.PNG)
 
 ![](docs/IMG_8631.png)
 
