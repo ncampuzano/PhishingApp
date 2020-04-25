@@ -23,7 +23,7 @@ async function GetURLInformation(url) {
       body: formData
     });
     response = await response.json();
-    return response;
+    return response.results;
   } catch(error) {
     console.error(error);
     return null;
