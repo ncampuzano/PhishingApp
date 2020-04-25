@@ -15,7 +15,6 @@ class VerifyScreen extends React.Component {
   searchURL = async () => {
     this.setState({ isLoading: true });
     const response = await GetURLInformation(this.state.query);
-    console.log(response);
     this.setState({ result: response, isLoading: false });
   }
   updateSearch = (search) => {
