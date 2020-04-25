@@ -7,9 +7,9 @@ class ReportScreen extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <ScrollView>
-          <View>
-            <Text>Hello!</Text>
+        <ScrollView style={styles.container}>
+          <View style={{ alignItems: 'center' }}>
+            <Text>Feature in development!</Text>
           </View>
         </ScrollView>
       </View>
