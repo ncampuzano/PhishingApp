@@ -2,6 +2,7 @@ import * as React from 'react';
 import { StyleSheet, View } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import { SearchBar, Button, Text, Badge } from 'react-native-elements';
+import * as WebBrowser from 'expo-web-browser';
 
 import { GetURLInformation } from '../functions/PhishTankAPI';
 
@@ -20,6 +21,10 @@ class VerifyScreen extends React.Component {
   updateSearch = (search) => {
     this.setState({ query: search });
   };
+  openBrowser = () => {
+    WebBrowser.
+      openBrowserAsync(this.state.result.phish_detail_page);
+  }
   render() {
     const { query } = this.state;
     return (
@@ -55,21 +60,28 @@ class VerifyScreen extends React.Component {
                     <Badge status='success' value=' '/>) ||
                     <Badge status='error' value=' '/>
                   }
-                  <Text style={styles.subtitle}> In Database</Text>
+                  <Text style={styles.subtitle}>  In Database</Text>
                 </View>
                 { this.state.result.in_database && 
                   <View>
                     <View style={styles.textContainer}>
-                      <Text style={styles.subtitle}>Verified</Text>
+                      {(this.state.result.verified && 
+                        <Badge status='success' value=' '/>) ||
+                        <Badge status='error' value=' '/>
+                      }
+                      <Text style={styles.subtitle}>  Verified</Text>
                     </View>
-                  { this.state.result.verified &&
-                    <View style={styles.textContainer}>
-                      <Text style={styles.subtitle}>Verified at: </Text>
-                    </View>
-                  }
-                    <View style={styles.textContainer}>
-                      <Text style={styles.subtitle}>Details: </Text>
-                    </View>
+                    { this.state.result.verified &&
+                      <View style={styles.textContainer}>
+                        <Text style={styles.subtitle}>Verified at: </Text>
+                        <Text>{this.state.result.verified_at}</Text>
+                      </View>
+                    }
+                    <Button 
+                      title='Open in browser'
+                      type='outline'
+                      onPress={() => this.openBrowser()}
+                    />
                   </View>
                 }
               </View>
@@ -103,14 +115,18 @@ const styles = StyleSheet.create({
     marginTop: 30
   },
   subtitle: {
-    fontSize: 18,
+    fontSize: 17,
   },
   textContainer: {
     flexDirection: 'row',
     marginHorizontal: 15,
     flexWrap: 'wrap',
     alignItems: 'center'
-  }
+  },
+  helpLinkText: {
+    fontSize: 14,
+    color: '#2e78b7',
+  },
 });
 
 export default VerifyScreen;
