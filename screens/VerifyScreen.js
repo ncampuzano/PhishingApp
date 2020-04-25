@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
-import { SearchBar, Button } from 'react-native-elements';
+import { SearchBar, Button, Text, Badge } from 'react-native-elements';
 
 import { GetURLInformation } from '../functions/PhishTankAPI';
 
@@ -44,7 +44,36 @@ class VerifyScreen extends React.Component {
             />
           </View>
           <View style={styles.infoContainer}>
-            <Text>{JSON.stringify(this.state.result) }</Text>
+            { this.state.result != null &&
+              <View>
+                <View style={styles.textContainer}>
+                  <Text style={styles.subtitle}>URL: </Text>
+                  <Text>{this.state.result.url}</Text>
+                </View>
+                <View style={styles.textContainer}>
+                  {(this.state.result.in_database && 
+                    <Badge status='success' value=' '/>) ||
+                    <Badge status='error' value=' '/>
+                  }
+                  <Text style={styles.subtitle}> In Database</Text>
+                </View>
+                { this.state.result.in_database && 
+                  <View>
+                    <View style={styles.textContainer}>
+                      <Text style={styles.subtitle}>Verified</Text>
+                    </View>
+                  { this.state.result.verified &&
+                    <View style={styles.textContainer}>
+                      <Text style={styles.subtitle}>Verified at: </Text>
+                    </View>
+                  }
+                    <View style={styles.textContainer}>
+                      <Text style={styles.subtitle}>Details: </Text>
+                    </View>
+                  </View>
+                }
+              </View>
+            }
           </View>
         </ScrollView>
       </View>      
@@ -72,6 +101,15 @@ const styles = StyleSheet.create({
   },
   searchContainer: {
     marginTop: 30
+  },
+  subtitle: {
+    fontSize: 18,
+  },
+  textContainer: {
+    flexDirection: 'row',
+    marginHorizontal: 15,
+    flexWrap: 'wrap',
+    alignItems: 'center'
   }
 });
 
